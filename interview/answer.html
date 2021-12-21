@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    var practitioners = function practitioners(val) {
+        console.log('剩余' + val + '次');
+        return Math.random() >= 0.5;
+    }
+    var caller = function (numberOf, state, time) {
+        numberOf--;
+        var setTiem = time || 10;
+        var setState = state(numberOf);
+        
+        if (numberOf <= 0) {
+            console.log('failure');
+            return
+        }
+        if (!setState) {
+            setTimeout(function () {
+                caller(numberOf, state, setTiem);
+            }, setTiem);
+        } else {
+            console.log('successful');
+            return
+        }
+    }
+    caller(5, practitioners, 1000);
+</script>
+
+</html>
